@@ -99,3 +99,70 @@ function checkCashRegister(price, cash, cid) {
   return ;
 }
 
+// USEFUL ALGORITMS
+
+// чтобы в массиве каждый элемент повторялся максимум энное количество раз
+function deleteNth(arr,x){                                                               
+  var obj = {}
+  return arr.filter(function(number){
+    obj[number] = obj[number] ? obj[number] + 1 : 1
+    return obj[number] <= x
+  })
+}
+
+// если в обьекте есть разработчик на языке Пайтон вывести его : иначе 
+function getFirstPython(list) {
+  var res = list.find(x => x.language=='Python');
+  return res ? res.firstName+', '+res.country : 'There will be no Python developers';
+}
+
+
+function alphabetWar(fight){
+  const value = {
+    'w': 4,
+    'p': 3,
+    'b': 2,
+    's': 1,
+    'm': 4,
+    'q': 3,
+    'd': 2,
+    'z': 1
+  }
+  let left = fight.split('').reduce((acc,el)=>
+                                (el == 'w'||el == 'p'|| el == 'b'|| el == 's')
+                                ? acc + value[el] : acc
+                               ,0)
+  let right = fight.split('').reduce((acc,el)=>
+                                (el == 'm'||el == 'q'|| el == 'd'|| el == 'z')
+                                ? acc + value[el] : acc
+                               ,0)
+}
+
+
+// дано обьект : вернуть количество разработчиков которые из Европы и работают на JavaScript
+function countDevelopers(list) {
+  return list.reduce((count, dev) => 
+    (dev.continent === 'Europe' && dev.language === 'JavaScript')
+      ? count + 1 : count
+    , 0);
+}
+
+// рассчитать на сколько дней хватит дэйзика
+function evaporator(content, evap_per_day, threshold){ 
+  let result = 0;
+  let percentage = 100;
+  while(percentage > threshold){
+    percentage -= percentage * (evap_per_day / 100);
+    result += 1
+  }
+  return result
+}
+
+
+//проверить если с углимы которые нам даны можно сделать треугольник
+function isTriangle(a,b,c)
+{
+  [a, b, c] = [a, b, c].sort((x, y) => x-y);
+  
+  return a+b > c;
+}
