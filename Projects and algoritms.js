@@ -230,3 +230,15 @@ function deleteNth(arr,n){
   }
   return result
 }
+
+//найти самое повторяющееся значение 
+function mostFrequentItemCount(collection) {
+  if(!collection.length){
+    return 0
+  }
+  const count =  collection.reduce((acc,el)=>{
+                    acc[el]? acc[el] += 1: acc[el] = 1;
+                    return acc
+  },{})
+  return Math.max(...Object.values(count))
+}
