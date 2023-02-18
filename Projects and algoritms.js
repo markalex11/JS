@@ -203,3 +203,12 @@ function isValidWalk(walk) {
   }
   return walk.length==10 && count('n')==count('s') && count('w')==count('e');
 }
+
+// функция с скобками
+function validBraces(braces){
+  for(let i = 0; i <= braces.length*2;i++){
+    braces = braces.split('()').join('').split('[]').join('').split('{}').join('')
+   
+  }
+  return braces == ''
+}
