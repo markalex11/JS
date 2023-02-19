@@ -242,3 +242,196 @@ function mostFrequentItemCount(collection) {
   },{})
   return Math.max(...Object.values(count))
 }
+// сколько людей лайкнуло пост
+function likes(names) {
+  if(!names.length){
+    return "no one likes this"
+  }else if(names.length === 1){
+    return  names[0] + ' likes this'
+  }else if(names.length === 2){
+    return names[0] + ' and ' + names[1] + ' like this'
+  }else if(names.length === 3){
+    return names[0] + ', ' + names[1] + ' and ' + names[2] + ' like this'
+  }else {
+    return names[0] + ', ' + names[1] + ' and ' + (names.length-2) +' others like this'
+  }
+  
+}
+
+//сколько разных языков программирования будут на конференции
+function countLanguages(list) {
+  return list.map(el => el.language).reduce((acc,el)=>{
+                                    acc[el]? acc[el] += 1: acc[el] = 1;
+                                    return acc
+  },{})
+}
+
+
+//первый разработчик в обьекте который работает на пайтоне
+function getFirstPython(list) {
+  if(!list.some(el => el.language == 'Python')){
+    return 'There will be no Python developers'
+  }
+  return list.map(el => el.language == 'Python'?el.firstName + ', '+ el.country : 0).filter(el => el != 0)[0]
+}
+
+
+//цепочка палиндром
+var palindromeChainLength = function(n) {
+  n = n.toString();
+  const r = n.toString().split('').reverse().join('');
+  if (n == r){
+    return 0
+  } else {
+    return 1 + palindromeChainLength(Number(r)+Number(n))
+  }
+    
+};
+
+//сумма чисел от нуля до н
+var SequenceSum = (function() {
+  function SequenceSum() {}
+
+  SequenceSum.showSequence = function(count) {
+     if(count == 0){
+       return '0=0'
+     }else if(count < 0){
+       return (count+'')+'<0'
+     } else {
+       return Array.from({length: count+1}, (_, i)=> i).join('+') + ' = ' + Array.from({length: count+1}, (_, i)=> i)
+         .reduce((acc,el)=> acc+el)
+     }
+  };
+
+  return SequenceSum;
+
+})();
+
+//сумма чисел массива в кубе
+function sumCubes(n){
+  return Array.from({length: n}, (_, i)=> i+1).reduce((acc,el)=> acc + Math.pow(el,3),0)
+}
+
+
+//тут и так все понятно
+function reverseNumber(n) {
+  if(n < 0){
+    const a = (Math.abs(n)+'').split('').reverse();
+    return  Number(a.join('')) * (-1)
+  }else{
+    const a = (n+'').split('').reverse();
+    return Number(a.join(''))
+    }
+  
+}
+
+//задача с делением на 3 и 5
+function fizzbuzz(n){
+  return Array.from({length: n}, (_, i)=> i+1).reduce((acc,el)=>{ 
+         acc.push((el%3==0 && el%5==0)?"FizzBuzz":
+                   el%3==0?'Fizz':
+                   el%5==0?'Buzz':
+                   el);
+                                               
+                   return acc
+    
+  },[])
+}
+
+
+
+function wordsToMarks(string){
+  const alph = [0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  string = string.split('');
+  return string.map(el => alph.indexOf(el)).reduce((acc,el)=>acc+el,0)
+}
+
+
+//моя любимая рекурсия:)
+function factorial(n){
+  if (n <= 1) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+  
+}
+
+
+// задача с длинной строк
+function mxdiflg(a1, a2) {
+  if(a1.length * a2.length === 0){
+    return -1
+  }
+   const hA1 = Math.max(...a1.map(el => el.length));
+   const hA2 = Math.max(...a2.map(el => el.length));
+  
+   const lA1 = Math.min(...a1.map(el => el.length));
+   const lA2 = Math.min(...a2.map(el => el.length));
+  
+   const first = hA1 - lA2;
+   const second = hA2 - lA1;
+  
+   if(first > second){
+     return first
+   } else {
+     return second
+   }
+}
+
+
+//проверка скидочного купона на дату и валидность
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+  
+  return  enteredCode === correctCode && new Date(currentDate) <= new Date(expirationDate)
+}
+
+
+function sumDigits(number) {
+  return (number+'').match(/\d/g).reduce((acc,el)=> acc + Number(el),0)
+}
+
+//
+function maxMultiple(divisor, bound){
+  
+  for(let i = bound; i > 1; i--){
+    if(i%divisor == 0){
+      return i
+    }
+  }
+}
+
+
+function smallEnough(a, limit){
+  return !a.some(el => el > limit)
+}
+
+function nbDig(n, d) {
+  const myR = new RegExp(d,'g');
+  let count = 0;
+  for(let i = 0; i <= n; i++){
+    if(myR.test(Math.pow(i,2)+'')){      
+      count += (Math.pow(i,2)+'').match(myR).length;
+    }
+  }
+return count
+}
+
+
+//задача с депозитом
+function calculateYears(principal, interest, tax, desired) {
+  let years = 0;
+  while(principal < desired){
+    let first = principal * interest;
+    principal += first - (first*tax)
+    years++
+  }
+    return years
+}
+//
+
+
+function stray(numbers) {
+  
+  return numbers.find(n => numbers.indexOf(n) === numbers.lastIndexOf(n))
+}
