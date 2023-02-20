@@ -435,3 +435,240 @@ function stray(numbers) {
   
   return numbers.find(n => numbers.indexOf(n) === numbers.lastIndexOf(n))
 }
+
+function titleCase(title, minorWords) {
+  if(title == ''){
+    return ''
+  }
+  if(!minorWords){
+    return title.split(' ').map(el => el[0].toUpperCase()+el.slice(1).toLowerCase()).join(' ')
+  }
+  
+  title = title.toLowerCase();
+  minorWords = minorWords.toLowerCase();
+  let result = title.split(' ').map(el=> minorWords.split(' ').some(v => v == el)?el.toLowerCase(): el[0].toUpperCase()+el.slice(1).toLowerCase()).join(' ')
+  return result[0].toUpperCase()+result.slice(1)
+}
+
+function automorphic(n){
+  return Math.pow(n,2).toString().endsWith(n.toString())?"Automorphic":"Not!!"
+}
+
+function parse( data ){
+  const result = [];
+  [...data].reduce((acc, el) => {
+    el === 'i'? acc++:
+    el === 'd'? acc--:
+    el === 's'? acc = Math.pow(acc, 2):
+    el === 'o'? result.push(acc): acc
+    
+    return acc;
+  }, 0);
+  
+  return result;
+}
+
+
+function triangle(row) {
+  let result = ''
+ if(row.length == 1){
+   return row
+ }
+   
+   for(let i = 0; i < row.length-1; i++){
+     if(row[i]==row[i+1]){
+       result += row[i];
+     }else{
+       result += 'RGB'.replace(row[i],'').replace(row[i+1],'')
+     }
+   }
+   if(result.length > 1){
+     return triangle(result)
+   }else{
+     return result
+   }
+ 
+ }
+
+ function stockList(listOfArt, listOfCat){
+  if(!listOfArt.length || !listOfCat.length){
+    return ''
+  }
+  const obj = {};
+  const result = [];
+  listOfCat.map(el=>obj[el]=0);
+  listOfArt.forEach(el => obj.hasOwnProperty(el[0])? obj[el[0]] += Number(el.match(/\d/g).join('')):el);
+  for(let key in obj){
+    result.push('('+key+' : '+obj[key]+')')
+  }
+  
+  return result.join(' - ')
+}
+
+function solve(arr) {
+  const result = [];
+  arr = arr.reverse();
+  for(let i = 0; i < arr.length; i++){
+    if(result.indexOf(arr[i])==-1){
+      result.push(arr[i])
+    }
+  }
+  
+  return result.reverse()
+  
+}
+
+function convertCtoF(celsius) {
+  let fahrenheit = celsius * (9/5) + 32;
+  return fahrenheit;
+}
+
+convertCtoF(30);
+
+
+function reverseString(str) {                                                                         
+  let resultStr = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    resultStr = resultStr + str[i];
+  }
+
+  return resultStr;
+}
+
+
+function factorialize(num) {
+  if (num < 0) {
+    return ;
+  } else if (num == 0) {
+    return 1 ;
+  } else {
+    return num * factorialize(num - 1);
+  }
+
+}
+
+function findLongestWordLength(str) {
+  let words = str.split(' ')
+  let maxLength = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > maxLength) {
+      maxLength = words[i].length;
+    }
+  }
+  return maxLength;
+
+}
+
+function largestOfFour(arr) {
+  const results = [];
+  for (let i = 0; i < arr.length; i++) {
+    let largestNumber = arr[i][0];
+    for (let j = 1; j < arr[i].length; j++) {
+      if (arr[i][j] > largestNumber) {
+        largestNumber = arr[i][j];
+      }
+    }
+    results[i] = largestNumber;
+  }
+
+  return results;
+}
+
+function confirmEnding(str, target) {
+  return str.slice(str.length - target.length) === target;
+}
+
+function repeatStringNumTimes(str, num) {
+  let resultStr = '';
+  if (num <= 0) {
+    return '';
+  } else {
+    for (let i = num; i > 0; i--)
+    resultStr += str;
+  }
+  return resultStr;
+}
+
+function truncateString(str, num) {
+  if (str.length > num ) {
+    return str.slice(0,num) + '...';
+  } else {
+    return str;
+  }
+}
+
+
+function findElement(arr, func) {
+  let num = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (func(arr[i])) {
+      return num = arr[i];
+    } else {
+      num = undefined;
+    }
+  }
+  return num;
+}
+
+function booWho(bool) {
+  if (typeof bool === 'boolean') {
+    return true;
+  } else {
+    return false;
+  }
+  
+}
+
+function titleCase(str) {
+  const newTitle = str.split(" ");   
+  const updatedTitle = [];            
+  for (let st in newTitle) {              
+    updatedTitle[st] = newTitle[st][0].toUpperCase() + newTitle[st].slice(1).toLowerCase();  
+                                                                                                                                                         
+  }
+  return updatedTitle.join(" ");  
+}
+
+function bouncer(arr) {
+  let resultArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i]) {                                        
+      resultArr.push(arr[i]);
+    }
+  }
+  return resultArr;
+}
+
+
+function getIndexToIns(arr, num) {
+  arr.sort((a,b) => a - b);                             
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= num) { 
+      return i;  
+    }
+  }
+  return arr.length;                                   
+} 
+
+function mutation(arr) {
+  const test = arr[1].toLowerCase();           
+  const target = arr[0].toLowerCase();
+   for (let i = 0; i < test.length; i++) {         
+     if (target.indexOf(test[i]) < 0)               
+      return false 
+   }
+   return true;
+ }
+
+ function chunkArrayInGroups(arr, size) {                                                 
+  if (arr.length <= size) {
+    return [arr];
+  } else {
+    return [arr.slice(0, size)].concat(
+      chunkArrayInGroups(arr.slice(size), size)
+    );
+  }
+}
+ 
+
