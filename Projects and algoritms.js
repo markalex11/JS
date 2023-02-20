@@ -670,5 +670,108 @@ function mutation(arr) {
     );
   }
 }
- 
 
+Array.prototype.remove_ = function(integer_list, values_list){
+  return integer_list.filter(el => values_list.indexOf(el)<0)
+}
+
+
+function isSameLanguage(list) {
+  return new Set(list.map(el => el.language)).size === 1
+}
+
+function countLanguages(list) {
+  return list.map(el => el.language).reduce((acc,el)=>{
+                                    acc[el]? acc[el] += 1: acc[el] = 1;
+                                    return acc
+  },{})
+}
+
+
+function countRedBeads(n) {
+  if(n<2){
+    return 0
+  }
+  return (n-1)*2
+}
+
+
+function overTheRoad(address, n){
+  return ((n*2)-address)+1
+}
+
+function isRubyComing(list) {
+  return list.some(el => el.language == "Ruby")
+}
+
+function sortGiftCode(code){
+  return [...code].sort().join('')
+}
+
+function isPowerOfTwo(n){
+  return Number.isInteger(Math.log2(n))
+  
+}
+
+function toNumberArray(stringarray){
+  return stringarray.map(el => Number(el))
+}
+
+function hasUniqueChars(str){
+  return str == [...new Set(str)].join('')
+}
+
+function switcheroo(x){
+  return [...x].map(el=> el=='a'?'b':el=='b'?'a':'c').join('')
+}
+var greet = function(name) {
+  return "Hello "+ name.slice(0,1).toUpperCase()+name.slice(1).toLowerCase()+'!'
+};
+
+function digits(n) {
+  return n.toString().length
+}
+
+function findLongest(array){
+  const a = array.map(el => el+'').sort((a,b)=>b.length-a.length)
+  return Number(a[0])
+}
+
+function bump(x){
+  return x.split('').reduce((acc,el)=> (el == 'n')? acc + 1: acc,0) <= 15
+    ?"Woohoo!":
+    "Car Dead"
+ }
+
+ function noOdds( values ){
+  return values.filter(el => el%2==0)
+}
+
+function evenNumbers(array, number) {
+  return array.filter(el=>el%2==0).slice(-number)
+}
+
+function predictAge(age1,age2,age3,age4,age5,age6,age7,age8){
+  return Math.floor(Math.sqrt([...arguments].map(el=>el*el).reduce((acc,el)=>acc + el))/2)
+}
+
+function angle(n) {
+  return (n-2)*180
+}
+
+function largestPairSum (numbers) {
+  numbers = numbers.sort((a,b)=> b-a);
+  return numbers[0]+numbers[1]
+}
+
+function getEvenNumbers(array){
+  return array.filter(el => el%2 == 0)
+}
+
+function removeDuplicateWords (s) {
+  return [...new Set(s.split(' '))].join(' ')
+}
+
+function sumOfMinimums(arr) {
+  return arr.map(el => el.sort((a,b)=> a-b)).map(el => el[0]).reduce((acc,el)=> acc+el)
+}
