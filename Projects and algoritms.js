@@ -775,3 +775,132 @@ function removeDuplicateWords (s) {
 function sumOfMinimums(arr) {
   return arr.map(el => el.sort((a,b)=> a-b)).map(el => el[0]).reduce((acc,el)=> acc+el)
 }
+
+function balancedNum(number){
+  if(number.toString().length < 3){
+    return 'Balanced';
+  }else if(number.toString().length%2==0){
+    const a = number.toString()
+                    .split('')
+                    .slice(0,(number.toString().length/2)-1)
+                    .reduce((acc,el)=> acc + Number(el),0);
+    const b =  number.toString()
+                    .split('')
+                    .slice(-((number.toString().length/2)-1))
+                    .reduce((acc,el)=> acc + Number(el),0);
+    return b==a?"Balanced":"Not Balanced";
+  }else{
+    const a = number.toString()
+                    .split('')
+                    .slice(0,number.toString().length/2)
+                    .reduce((acc,el)=> acc + Number(el),0);
+    const b =  number.toString()
+                    .split('')
+                    .slice(-(number.toString().length/2))
+                    .reduce((acc,el)=> acc + Number(el),0);
+    
+    return  b==a?"Balanced":"Not Balanced";
+  }
+ 
+
+}
+
+function goodVsEvil(good, evil){
+  const pos = [1,2,3,3,4,10];
+  const neg = [1,2,2,2,3,5,10];
+  let a =  good.split(' ').reduce((acc,el,i)=> acc + (Number(el)*pos[i]),0 );
+  let b = evil.split(' ').reduce((acc,el,i)=> acc + (Number(el)*neg[i]),0 );
+  return b>a?'Battle Result: Evil eradicates all trace of Good':
+         a>b?'Battle Result: Good triumphs over Evil': 'Battle Result: No victor on this battle field'
+   
+}
+
+function solve(arr) {
+  const result = [];
+  arr = arr.reverse();
+  for(let i = 0; i < arr.length; i++){
+    if(result.indexOf(arr[i])==-1){
+      result.push(arr[i])
+    }
+  }
+  
+  return result.reverse()
+  
+}
+
+function stockList(listOfArt, listOfCat){
+  if(!listOfArt.length || !listOfCat.length){
+    return ''
+  }
+  const obj = {};
+  const result = [];
+  listOfCat.map(el=>obj[el]=0);
+  listOfArt.forEach(el => obj.hasOwnProperty(el[0])? obj[el[0]] += Number(el.match(/\d/g).join('')):el);
+  for(let key in obj){
+    result.push('('+key+' : '+obj[key]+')')
+  }
+  
+  return result.join(' - ')
+}
+
+function triangle(row) {
+  let result = ''
+ if(row.length == 1){
+   return row
+ }
+   
+   for(let i = 0; i < row.length-1; i++){
+     if(row[i]==row[i+1]){
+       result += row[i];
+     }else{
+       result += 'RGB'.replace(row[i],'').replace(row[i+1],'')
+     }
+   }
+   if(result.length > 1){
+     return triangle(result)
+   }else{
+     return result
+   }
+ 
+ }
+
+ function parse( data ){
+  const result = [];
+  [...data].reduce((acc, el) => {
+    el === 'i'? acc++:
+    el === 'd'? acc--:
+    el === 's'? acc = Math.pow(acc, 2):
+    el === 'o'? result.push(acc): acc
+    
+    return acc;
+  }, 0);
+  
+  return result;
+}
+
+
+function titleCase(title, minorWords) {
+  if(title == ''){
+    return ''
+  }
+  if(!minorWords){
+    return title.split(' ').map(el => el[0].toUpperCase()+el.slice(1).toLowerCase()).join(' ')
+  }
+  
+  title = title.toLowerCase();
+  minorWords = minorWords.toLowerCase();
+  let result = title.split(' ').map(el=> minorWords.split(' ').some(v => v == el)?el.toLowerCase(): el[0].toUpperCase()+el.slice(1).toLowerCase()).join(' ')
+  return result[0].toUpperCase()+result.slice(1)
+}
+
+function sqInRect(lng, wdth){
+  const  result = [];
+  if(lng == wdth) {
+    return null
+  }
+  while(lng > 0 && wdth > 0){
+    result.push(lng > wdth ? wdth : lng);
+    lng > wdth ? lng -= wdth : wdth -= lng;
+  }
+  return result
+}
